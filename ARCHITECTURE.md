@@ -15,6 +15,8 @@ src/
 │   ├── Indicator.tsx         # Composant carte statistique réutilisable
 │   ├── PieChart.tsx          # Graphique camembert (Chart.js)
 │   └── LineChart.tsx         # Graphique linéaire (Chart.js)
+├── models/
+│   └── olympics.ts           # Interfaces partagées (Olympic, Participation)
 ├── hooks/
 │   └── useData.ts            # Custom hook de gestion des données
 └── utils/
@@ -50,14 +52,14 @@ src/
 #### `PieChart.tsx`
 - **Type** : dumb
 - **Rôle** : affiche un graphique camembert (Chart.js)
-- **Props** : `data: Data[]` (tableau des pays)
+- **Props** : `data: Olympic[]` (tableau des pays)
 - **Logique interne** : appelle `buildPieData()` (depuis `chartConfig.ts`) pour formater les données Chart.js
 - **Usage** : page `Home`
 
 #### `LineChart.tsx`
 - **Type** : dumb
 - **Rôle** : affiche un graphique linéaire (Chart.js)
-- **Props** : `data: Data` (un seul pays)
+- **Props** : `data: Olympic` (un seul pays)
 - **Logique interne** : appelle `buildLineData()` (depuis `chartConfig.ts`) pour formater les données Chart.js
 - **Usage** : page `Country`
 
@@ -73,8 +75,11 @@ Expose l'état `data` (tableau de pays) et un état `isLoading` (booléen de cha
 
 ### Interface
 
+Les types sont centralisés dans `src/models/olympics.ts` et réutilisés par le hook et les utilitaires.
+
 ```typescript
-interface Participation {
+// src/models/olympics.ts
+export interface Participation {
     id: number;
     year: number;
     city: string;
@@ -82,14 +87,19 @@ interface Participation {
     athleteCount: number;
 }
 
-export interface Data {
+export interface Olympic {
     id: number;
-    name: string;
+    country: string;
     participations: Participation[];
 }
+```
+
+```typescript
+// src/hooks/useData.ts
+import type {Olympic} from "../models/olympics.ts";
 
 export function useData() {
-    const [data] = useState<Data[]>(inputData);
+    const [data] = useState<Olympic[]>(inputData);
     const [isLoading] = useState(false);
     return { data, isLoading };
 }
@@ -101,15 +111,15 @@ export function useData() {
 
 Contient les fonctions de calcul des statistiques, séparées de l'UI :
 
-- `calculateTotalMedals(country: Data): number` — somme des médailles d'un pays
-- `calculateTotalAthletes(country: Data): number` — somme des athlètes d'un pays
+- `calculateTotalMedals(olympic: Olympic): number` — somme des médailles d'un pays
+- `calculateTotalAthletes(olympic: Olympic): number` — somme des athlètes d'un pays
 
 ### `chartConfig.ts`
 
 Contient les fonctions de préparation des données pour les graphiques Chart.js :
 
-- `buildPieData(data: Data[])` — formate les données pour le camembert (labels, couleurs, datasets)
-- `buildLineData(country: Data)` — formate les données pour le graphique linéaire (années, médailles)
+- `buildPieData(data: Olympic[])` — formate les données pour le camembert (labels, couleurs, datasets)
+- `buildLineData(olympic: Olympic)` — formate les données pour le graphique linéaire (années, médailles)
 
 ## Préparation API et évolution future
 

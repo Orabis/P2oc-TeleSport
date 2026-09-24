@@ -1,9 +1,9 @@
-import type {Data} from "../hooks/useData.ts";
+import type {Olympic} from "../models/olympics.ts";
 import {calculateTotalMedals} from "./stats.ts";
 
-export const buildPieData = (data: Data[]) => ({
+export const buildPieData = (data: Olympic[]) => ({
     chartData: {
-        labels: data.map((d) => d.name),
+        labels: data.map((d) => d.country),
         datasets: [
             {
                 label: 'Total des médailles',
@@ -40,13 +40,13 @@ export const buildPieData = (data: Data[]) => ({
     },
 })
 
-export const buildLineData = (country: Data) => ({
+export const buildLineData = (olympic: Olympic) => ({
     evolutionData: {
-        labels: country.participations.map((p) => p.year.toString()),
+        labels: olympic.participations.map((p) => p.year.toString()),
         datasets: [
             {
                 label: 'Nombre de médailles',
-                data: country.participations.map((p) => p.medalsCount),
+                data: olympic.participations.map((p) => p.medalsCount),
                 borderColor: 'rgb(75, 192, 192)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 tension: 0.3,

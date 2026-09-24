@@ -1,9 +1,9 @@
-import type {Data} from "../hooks/useData.ts";
+import type {Olympic} from "../models/olympics.ts";
 import {buildLineData} from "../utils/chartConfig.ts";
 import {Line} from "react-chartjs-2";
 
 
-export function LineChart({ data }: { data: Data} ) {
+export function LineChart({ data }: { data: Olympic} ) {
     const { evolutionData, evolutionOptions } = buildLineData(data);
 
     return (

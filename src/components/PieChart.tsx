@@ -1,9 +1,9 @@
 import {Pie} from "react-chartjs-2";
-import type {Data} from "../hooks/useData.ts";
+import type {Olympic} from "../models/olympics.ts";
 import {buildPieData} from "../utils/chartConfig.ts";
 
 
-export function PieChart({ data }: { data: Data[] }) {
+export function PieChart({ data }: { data: Olympic[] }) {
     const { chartData, chartOptions } = buildPieData(data);
     return (
         <>

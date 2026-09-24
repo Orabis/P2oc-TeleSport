@@ -15,15 +15,15 @@ export function Country() {
             </div>
         )
     }
-    const country = data.find((c) => c.id === Number(id))
+    const olympic = data.find((c) => c.id === Number(id))
 
-    if (!country) {
+    if (!olympic) {
         return <div>Pays introuvable</div>
     }
-    const totalMedals = calculateTotalMedals(country)
-    const totalAthletes = calculateTotalAthletes(country)
+    const totalMedals = calculateTotalMedals(olympic)
+    const totalAthletes = calculateTotalAthletes(olympic)
 
-    const totalParticipations = country.participations.length
+    const totalParticipations = olympic.participations.length
 
     const indicators = [
         { title: 'Participations', value: totalParticipations, className: 'text-blue-400' },
@@ -34,13 +34,13 @@ export function Country() {
     return (
         <div className="min-h-screen bg-gray-900 text-white p-8">
             <div className="max-w-6xl mx-auto">
-                <h1 className="text-4xl font-bold mb-8">{country.name}</h1>
+                <h1 className="text-4xl font-bold mb-8">{olympic.country}</h1>
                 <div className="mb-2">
                     { indicators.map((indicator) => (
                         <Indicator key= { indicator.title} title={indicator.title} value={indicator.value} className={indicator.className} />
                     ))}
                 </div>
-                <LineChart data={country} />
+                <LineChart data={olympic} />
                 <div className="text-sm text-gray-400">
                     <p>Données des 5 dernières éditions des Jeux Olympiques</p>
                 </div>

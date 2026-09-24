@@ -1,4 +1,4 @@
-interface IndicatorProps {
+export interface IndicatorProps {
     title: string;
     value: string | number;
     className?: string;

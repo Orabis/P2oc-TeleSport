@@ -1,29 +1,16 @@
 import { useState} from "react";
-
-interface Participation {
-    id: number;
-    year: number;
-    city: string;
-    medalsCount:number;
-    athleteCount:number;
-}
-
-export interface Data {
-    id: number;
-    name: string;
-    participations: Participation[];
-}
+import type {Olympic} from "../models/olympics.ts";
 
 export function useData() {
-    const [data] = useState<Data[]>(inputData);
+    const [data] = useState<Olympic[]>(inputData);
     const [isLoading] = useState(false);
     return { data, isLoading };
 }
 
-export const inputData: Data[] = [
+export const inputData: Olympic[] = [
     {
         id: 1,
-        name: 'États-Unis',
+        country: 'États-Unis',
         participations: [
             { id: 1, year: 2020, city: 'Tokyo', medalsCount: 113, athleteCount: 613 },
             { id: 2, year: 2016, city: 'Rio', medalsCount: 121, athleteCount: 555 },
@@ -46,7 +33,7 @@ export const inputData: Data[] = [
     },
     {
         id: 2,
-        name: 'Chine',
+        country: 'Chine',
         participations: [
             { id: 6, year: 2020, city: 'Tokyo', medalsCount: 88, athleteCount: 431 },
             { id: 7, year: 2016, city: 'Rio', medalsCount: 70, athleteCount: 413 },
@@ -69,7 +56,7 @@ export const inputData: Data[] = [
     },
     {
         id: 3,
-        name: 'Japon',
+        country: 'Japon',
         participations: [
             { id: 11, year: 2020, city: 'Tokyo', medalsCount: 58, athleteCount: 582 },
             { id: 12, year: 2016, city: 'Rio', medalsCount: 41, athleteCount: 338 },
@@ -92,7 +79,7 @@ export const inputData: Data[] = [
     },
     {
         id: 4,
-        name: 'Grande-Bretagne',
+        country: 'Grande-Bretagne',
         participations: [
             { id: 16, year: 2020, city: 'Tokyo', medalsCount: 65, athleteCount: 376 },
             { id: 17, year: 2016, city: 'Rio', medalsCount: 67, athleteCount: 366 },
@@ -115,7 +102,7 @@ export const inputData: Data[] = [
     },
     {
         id: 5,
-        name: 'France',
+        country: 'France',
         participations: [
             { id: 21, year: 2020, city: 'Tokyo', medalsCount: 33, athleteCount: 378 },
             { id: 22, year: 2016, city: 'Rio', medalsCount: 42, athleteCount: 401 },

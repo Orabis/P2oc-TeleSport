@@ -1,3 +1,5 @@
+import { useState} from "react";
+
 interface Participation {
     id: number;
     year: number;
@@ -6,12 +8,19 @@ interface Participation {
     athleteCount:number;
 }
 
-interface Data {
+export interface Data {
     id: number;
     name: string;
     participations: Participation[];
 }
-export const olympicsData: Data[] = [
+
+export function useData() {
+    const [data] = useState<Data[]>(inputData);
+    const [isLoading] = useState(false);
+    return { data, isLoading };
+}
+
+export const inputData: Data[] = [
     {
         id: 1,
         name: 'États-Unis',

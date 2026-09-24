@@ -1,7 +1,6 @@
-import { type FC } from 'react'
 import {Router} from "./Router.tsx";
 
-export const App: FC = () => {
+export function App() {
   return (
     <Router />
   )

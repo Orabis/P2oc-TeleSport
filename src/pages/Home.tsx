@@ -1,6 +1,6 @@
 import { useData } from "../hooks/useData.ts";
 import {PieChart} from "../components/PieChart.tsx";
-import {Header} from "../components/Header.tsx";
+import {HeaderComponent} from "../components/HeaderComponent.tsx";
 import type {IndicatorProps} from "../components/Indicator.tsx";
 
 export function Home(){
@@ -24,9 +24,9 @@ export function Home(){
     return (
         <div className="min-h-screen bg-gray-900 text-white p-8">
             <div className="max-w-6xl mx-auto">
-                <Header indicators={indicators}/>
+                <HeaderComponent title="Historique des Jeux Olympiques - TéléSport" indicators={indicators}/>
                 <PieChart data={data} />
-                <div className="text-sm text-gray-400">
+                <div className="text-sm text-gray-400 text-center">
                     <p>Cliquez sur un pays pour voir ses détails</p>
                 </div>
             </div>

@@ -1,7 +1,8 @@
 import type {Olympic} from "../models/olympics.ts";
 import {calculateTotalMedals} from "./stats.ts";
+import type {ActiveElement, ChartEvent} from "chart.js";
 
-export const buildPieData = (data: Olympic[]) => ({
+export const buildPieData = (data: Olympic[], onCountryClick: (id: number) => void) => ({
     chartData: {
         labels: data.map((d) => d.country),
         datasets: [
@@ -29,6 +30,13 @@ export const buildPieData = (data: Olympic[]) => ({
     chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
+        onClick: (_event: ChartEvent, elements: ActiveElement[]) => {
+            if (elements.length > 0) {
+                const index = elements[0].index
+                const country = data[index]
+                onCountryClick(country.id)
+            }
+        },
         plugins: {
             legend: {
                 position: 'bottom' as const,

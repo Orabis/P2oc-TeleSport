@@ -9,9 +9,12 @@ export function PieChart({ data }: { data: Olympic[] }) {
     const { chartData, chartOptions } = buildPieData(data, (id) => navigate(`/country/${id}`));
     return (
         <>
-            <div className="bg-gray-800 p-8 rounded-lg shadow-xl">
+            <div className="bg-gray-800 p-6 rounded-lg shadow-xl">
                 <div style={{height: '400px'}}>
                     <Pie data={chartData} options={chartOptions}/>
+                </div>
+                <div className="text-sm text-gray-400 text-center mt-3">
+                    <p>Cliquez sur un pays pour voir ses détails</p>
                 </div>
             </div>
         </>

@@ -1,12 +1,24 @@
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useData} from "../hooks/useData.ts";
 import {calculateTotalAthletes, calculateTotalMedals} from "../utils/stats.ts";
 import {LineChart} from "../components/LineChart.tsx";
 import {HeaderComponent} from "../components/HeaderComponent.tsx";
+import {useEffect} from "react";
 
 export function Country() {
     const { id } = useParams()
     const { data, isLoading } = useData()
+    const olympic = data.find((c) => c.id === Number(id))
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if ( !isLoading && !olympic) {
+            navigate(`/NotFound`, {replace: true})
+        }
+
+    }, [isLoading, navigate, olympic]);
+
+    if (!olympic) return null
 
     if (isLoading) {
         return(
@@ -15,11 +27,7 @@ export function Country() {
             </div>
         )
     }
-    const olympic = data.find((c) => c.id === Number(id))
 
-    if (!olympic) {
-        return <div>Pays introuvable</div>
-    }
     const totalMedals = calculateTotalMedals(olympic)
     const totalAthletes = calculateTotalAthletes(olympic)
 
@@ -34,12 +42,9 @@ export function Country() {
     return (
         <div className="min-h-screen bg-gray-900 text-white p-8">
             <div className="max-w-6xl mx-auto">
-                <Link to="/" className="text-gray-400 hover:text-white">Retour à l'accueil</Link>
+                <Link to="/" className="text-gray-400 hover:text-white mb-12">Retour</Link>
                 <HeaderComponent title={olympic.country} indicators={indicators}/>
                 <LineChart data={olympic} />
-                <div className="text-sm text-gray-400 text-center">
-                    <p>Données des 5 dernières éditions des Jeux Olympiques</p>
-                </div>
             </div>
         </div>
     )

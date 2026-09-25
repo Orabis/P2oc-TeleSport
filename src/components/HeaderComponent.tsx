@@ -7,11 +7,11 @@ export interface HeaderComponentProps {
 export function HeaderComponent({ title, indicators }:  HeaderComponentProps) {
 
     return (
-        <div className="flex items-center flex-col">
-            <h1 className="text-4xl font-bold mb-8">
+        <div className="flex flex-col">
+            <h1 className="text-4xl font-bold mb-8 text-center">
                 {title}
             </h1>
-            <div className="flex mb-2 items-center flex-row justify-center gap-8">
+            <div className="grid text-center grid-rows-2">
                 {indicators.map((indicator) => (
                     <Indicator key={indicator.title} title={indicator.title} value={indicator.value} className={indicator.className}/>
                 ))}

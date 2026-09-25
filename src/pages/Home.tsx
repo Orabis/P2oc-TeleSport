@@ -26,9 +26,6 @@ export function Home(){
             <div className="max-w-6xl mx-auto">
                 <HeaderComponent title="Historique des Jeux Olympiques - TéléSport" indicators={indicators}/>
                 <PieChart data={data} />
-                <div className="text-sm text-gray-400 text-center">
-                    <p>Cliquez sur un pays pour voir ses détails</p>
-                </div>
             </div>
         </div>
     )

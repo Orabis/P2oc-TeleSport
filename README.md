@@ -1,109 +1,88 @@
-# TéléSport - Olympic Games History Dashboard
+# TéléSport — Historique des Jeux Olympiques
 
-Interactive web application to visualize historical performance data of countries in the Olympic Games.
+Application web interactive qui permet de visualiser l'historique des performances des pays aux Jeux Olympiques : médailles, nombre d'athlètes et leur évolution, via des graphiques interactifs.
 
-## 🚀 Features
+## Fonctionnalités
 
-- **Interactive Dashboard**: View medal counts by country with interactive charts
-- **Country Details**: Explore detailed statistics for each participating country
-- **Data Visualization**: Interactive charts powered by Chart.js
-- **Responsive Design**: Optimized for desktop and mobile devices
-- **Modern Stack**: Built with React 19, TypeScript, and Tailwind CSS
+- **Tableau de bord** : répartition des médailles totales par pays (graphique camembert interactif)
+- **Détail par pays** : participations, totaux et évolution des médailles (graphique linéaire)
+- **Navigation** : clic sur une part du graphique pour ouvrir le détail du pays
+- **Gestion d'erreurs** : page 404 et redirection si l'identifiant de pays est inconnu
+- **Accessibilité** : contrastes conformes WCAG AA, focus visibles, graphiques décrits pour les lecteurs d'écran
+- **Stack moderne** : React 19, TypeScript, Vite, Tailwind CSS 4, Chart.js
 
-## 📋 Prerequisites
+## Prérequis
 
-- **Node.js** 22 LTS or higher
-- **pnpm** (Better package manager)
+- **Node.js** 22 LTS ou supérieur
+- **pnpm** (activé via `corepack`)
 
-## 🛠️ Installation (pnpm)
-
-Prérequis : avoir NPM d'installer
-```bash
-corepack enable pnpm
-
-pnpm -v
-
-# Done !
-```
-
-## Installation (projet )
-Clone the repository:
+## Installation
 
 ```bash
-git clone https://github.com/Orabis/P2oc-TeleSport
+# 1. Récupérer le projet
+git clone https://github.com/Orabis/P2oc-TeleSport.git
 cd P2oc-TeleSport
-```
 
-Install dependencies:
-
-```bash
+# 2. Activer pnpm puis installer les dépendances
+corepack enable pnpm
 pnpm install
 ```
 
-## 🎯 Usage
+## Utilisation
 
-### Development Server
+| Commande          | Description                                          |
+|-------------------|------------------------------------------------------|
+| `pnpm dev`        | Lance le serveur de développement (http://localhost:5173) |
+| `pnpm build`      | Build de production (`tsc -b && vite build`)         |
+| `pnpm preview`    | Prévisualise le build de production                  |
+| `pnpm lint`       | Analyse du code avec ESLint                          |
 
-Start the development server:
-
-```bash
-pnpm run dev
-```
-
-The application will be available at [http://localhost:5173](http://localhost:5173)
-
-### Production Build
-
-Build the application for production:
-
-```bash
-pnpm run build
-```
-
-### Linting
-
-Run the linter to check code quality:
-
-```bash
-pnpm run lint
-```
-
-## 📁 Project Structure
+## Structure du projet
 
 ```
-
+src/
+├── App.tsx             # Composant racine
+├── Router.tsx          # Routes : /, /country/:id, * → NotFound
+├── main.tsx            # Point d'entrée, enregistrement des modules Chart.js
+├── pages/
+│   ├── Home.tsx        # Tableau de bord (vue globale)
+│   ├── Country.tsx     # Détail d'un pays
+│   └── NotFound.tsx    # Page d'erreur 404
+├── components/
+│   ├── HeaderComponent.tsx  # En-tête partagé (titre + indicateurs)
+│   ├── Indicator.tsx       # Carte de statistique réutilisable
+│   ├── PieChart.tsx        # Graphique camembert
+│   └── LineChart.tsx       # Graphique linéaire
+├── hooks/
+│   └── useData.ts    # Accès aux données + état de chargement
+├── models/
+│   └── olympics.ts   # Types de domaine (Olympic, Participation)
+└── utils/
+    ├── stats.ts      # Fonctions de calcul
+    └── chartConfig.ts # Préparation des données pour Chart.js
 ```
 
-## 🔧 Tech Stack
+Voir [`ARCHITECTURE.md`](./ARCHITECTURE.md) pour le détail des responsabilités de chaque couche.
 
-- **React 19** - UI library with latest features
-- **TypeScript** - Static type checking
-- **Vite 5** - Fast build tool and dev server
-- **Tailwind CSS 4** - Utility-first CSS framework
-- **React Router 6** - Client-side routing
-- **Chart.js** - Interactive data visualization
-- **ESLint** - Code quality and consistency
+## Stack technique
 
-## 📊 Data
+- **React 19** — bibliothèque UI
+- **TypeScript** — typage statique
+- **Vite 7** — outil de build et serveur de développement
+- **Tailwind CSS 4** — framework CSS utility-first
+- **React Router 6** — routage côté client
+- **Chart.js** (via `react-chartjs-2`) — visualisation de données
+- **ESLint** — qualité et cohérence du code
 
-The application currently uses mock data to simulate Olympic Games statistics. This architecture is designed to facilitate future integration with a REST API backend.
+## Données
 
-## 🎨 Design
+L'application utilise actuellement des **données mockées** (tableau statique dans `src/hooks/useData.ts`). L'architecture est prête pour une intégration API : il suffit de modifier `useData()` (fetch natif ou React Query / SWR) sans toucher aux pages ni aux composants.
 
-The application features:
+## Documentation
 
-- Clean, modern interface optimized for data visualization
-- Responsive layout adapting to all screen sizes
-- Interactive charts with hover effects
-- Smooth navigation between pages
-
-## 📚 Documentation
-
-For more information on the technologies used:
-
-- [React Documentation](https://react.dev)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-- [Vite Guide](https://vitejs.dev)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [React Router Documentation](https://reactrouter.com)
-- [Chart.js Documentation](https://www.chartjs.org/docs/latest/)
+- [React](https://react.dev)
+- [TypeScript](https://www.typescriptlang.org/docs/)
+- [Vite](https://vitejs.dev)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [React Router](https://reactrouter.com)
+- [Chart.js](https://www.chartjs.org/docs/latest/)

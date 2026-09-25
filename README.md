@@ -13,21 +13,31 @@ Interactive web application to visualize historical performance data of countrie
 ## 📋 Prerequisites
 
 - **Node.js** 22 LTS or higher
-- **npm** (included with Node.js)
+- **pnpm** (Better package manager)
 
-## 🛠️ Installation
+## 🛠️ Installation (pnpm)
 
+Prérequis : avoir NPM d'installer
+```bash
+corepack enable pnpm
+
+pnpm -v
+
+# Done !
+```
+
+## Installation (projet )
 Clone the repository:
 
 ```bash
-git clone https://github.com/openclassrooms/p2-dfsjs.git
-cd p2-dfsjs
+git clone https://github.com/Orabis/P2oc-TeleSport
+cd P2oc-TeleSport
 ```
 
 Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ## 🎯 Usage
@@ -37,7 +47,7 @@ npm install
 Start the development server:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 The application will be available at [http://localhost:5173](http://localhost:5173)
@@ -47,7 +57,7 @@ The application will be available at [http://localhost:5173](http://localhost:51
 Build the application for production:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### Linting
@@ -55,24 +65,13 @@ npm run build
 Run the linter to check code quality:
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 ## 📁 Project Structure
 
 ```
-p2-dfsjs/
-├── public/              # Static public assets
-├── src/
-│   ├── App.tsx         # Main application component
-│   ├── main.tsx        # React entry point
-│   └── index.css       # Global styles
-├── index.html          # Main HTML page
-├── package.json        # Project dependencies
-├── tsconfig.json       # TypeScript configuration
-├── vite.config.ts      # Vite configuration
-├── tailwind.config.js  # Tailwind CSS configuration
-└── .eslintrc.cjs       # ESLint configuration
+
 ```
 
 ## 🔧 Tech Stack
@@ -108,15 +107,3 @@ For more information on the technologies used:
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [React Router Documentation](https://reactrouter.com)
 - [Chart.js Documentation](https://www.chartjs.org/docs/latest/)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📝 License
-
-This project is available for educational and personal use.
-
----
-
-**Built with React 19 + TypeScript + Vite + Tailwind CSS**

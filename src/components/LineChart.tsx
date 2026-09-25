@@ -9,7 +9,7 @@ export function LineChart({ data }: { data: Olympic} ) {
     return (
     <div className="bg-gray-800 p-6 rounded-lg shadow-xl">
         <div style={{height: '400px'}}>
-            <Line data={evolutionData} options={evolutionOptions}/>
+            <Line data={evolutionData} options={evolutionOptions} aria-label={`Evolution du nombre de médailles de ${data.country} sur les 5 dernières éditions des Jeux Olympiques`}/>
         </div>
         <div className="text-sm text-gray-400 text-center mt-3">
             <p>Données des 5 dernières éditions des Jeux Olympiques</p>

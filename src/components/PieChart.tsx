@@ -11,7 +11,7 @@ export function PieChart({ data }: { data: Olympic[] }) {
         <>
             <div className="bg-gray-800 p-6 rounded-lg shadow-xl">
                 <div style={{height: '400px'}}>
-                    <Pie data={chartData} options={chartOptions}/>
+                    <Pie data={chartData} options={chartOptions} aria-label="Répartition du nombre total de médailles par pays aux Jeux Olympiques"/>
                 </div>
                 <div className="text-sm text-gray-400 text-center mt-3">
                     <p>Cliquez sur un pays pour voir ses détails</p>

@@ -42,7 +42,7 @@ export function Country() {
     return (
         <div className="min-h-screen bg-gray-900 text-white p-8">
             <div className="max-w-6xl mx-auto">
-                <Link to="/" className="text-gray-400 hover:text-white mb-12">Retour</Link>
+                <Link to="/" className="mb-4 inline-block rounded-lg border border-white bg-transparent px-4 py-2 text-white focus-visible:ring-2 focus-visible:ring-white">Retour</Link>
                 <HeaderComponent title={olympic.country} indicators={indicators}/>
                 <LineChart data={olympic} />
             </div>
